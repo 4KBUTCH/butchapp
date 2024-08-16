@@ -1,34 +1,54 @@
-let slideIndex = 0;
+let currentSlide = 0;
+let autoSlideInterval;
 
-function showSlides(n) {
-    let slides = document.querySelectorAll('.slide');
-    let totalSlides = slides.length;
-    let maxIndex = totalSlides - 3; // Ajuste para el último set de 3 slides
+function showSlide(index) {
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
 
-    if (n > maxIndex) {
-        slideIndex = 0;
-    } else if (n < 0) {
-        slideIndex = maxIndex;
+    if (index >= totalSlides) {
+        currentSlide = 0;
+    } else if (index < 0) {
+        currentSlide = totalSlides - 1;
     } else {
-        slideIndex = n;
+        currentSlide = index;
     }
 
-    let offset = -(slideIndex * 33.33); // Mueve la posición de las slides
-    document.querySelector('.slides').style.transform = `translateX(${offset}%)`;
+    const slideWidth = slides[currentSlide].clientWidth;
+    const slidesContainer = document.querySelector('.slides');
+
+    slidesContainer.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
 }
 
 function plusSlides(n) {
-    showSlides(slideIndex + n);
+    showSlide(currentSlide + n);
 }
 
-// Función para mover automáticamente las slides
-function autoSlide() {
-    plusSlides(1);
+function startAutoSlide() {
+    autoSlideInterval = setInterval(() => {
+        plusSlides(1);
+    }, 12000); // 12 segundos
 }
 
-// Configuración inicial
-document.addEventListener('DOMContentLoaded', function () {
-    showSlides(slideIndex);
-    // Configura el temporizador para cambiar las slides cada 15 segundos
-    setInterval(autoSlide, 12800);
+function stopAutoSlide() {
+    clearInterval(autoSlideInterval);
+}
+
+// Inicializar slider
+showSlide(currentSlide);
+startAutoSlide();
+
+// Manejo de eventos para botones de navegación
+document.querySelector('.prev').addEventListener('click', () => {
+    plusSlides(-1);
+    stopAutoSlide();
+    startAutoSlide();
 });
+
+document.querySelector('.next').addEventListener('click', () => {
+    plusSlides(1);
+    stopAutoSlide();
+    startAutoSlide();
+});
+
+// Hacer el slider responsive
+window.addEventListener('resize', () => showSlide(currentSlide));

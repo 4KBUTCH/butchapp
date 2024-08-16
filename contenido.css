@@ -176,3 +176,41 @@ a {
 .contenido-detalle {
     margin-top: 73px;
 }
+
+@media (max-width: 768px){
+    .container {
+        display: flex;
+        flex-wrap: wrap; /* Asegurar que los elementos se ajusten en pantallas más pequeñas */
+        align-items: flex-start;
+        gap: 20px;
+        width: 99%;
+        margin: autos;
+        margin-bottom: 20px;
+        margin-top: 120px;
+        font-size: 12px;
+    }
+
+    .poster {
+        width: 30%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .enlace {
+        border-radius: 10px;
+        margin-bottom: 20px;
+        margin-top: 20px;
+        margin-left: 25%;
+        width: 50%;
+        height: auto;
+        transition: .4s;
+    }
+
+    .Ficha_tecnica {
+        width: 256px;
+        margin: auto;
+        text-align: center;
+        margin-top: 50px;
+        font-size: 12px;
+    }
+}
