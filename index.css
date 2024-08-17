@@ -124,6 +124,7 @@ a {
 .slider {
     position: relative;
     max-width: 100%;
+    height: auto;
     margin: 10px auto;
     margin-top: 63px;
     overflow: hidden;
@@ -186,7 +187,8 @@ a {
 }
 
 .h2_title {
-    width: 433px;
+    width: 500px;
+
     padding-left: 25px;
     padding-left: 20px;
     padding-bottom: 50px;
@@ -209,18 +211,35 @@ a {
 
 .cartas img {
     width: 100%;
-    height: auto;
+    height: 330px;
     border-radius: 5px;
+    transition: .3s;
+}
+
+.cartas img:hover {
+    opacity: .5;
+    transform: scale(1.035);
 }
 
 @media (max-width: 768px) {
     .prev, .next {
         font-size: 24px;
         padding: 8px;
+
+        
+        }
+
+       .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+            overflow: hidden;
+            justify-content: space-between;
+            
+        
         }
 
     .img_slider {
-        height: auto;
+        height: 235px;
     }
 
     .slider {
@@ -228,7 +247,7 @@ a {
     }
 
     .h2_title {
-        width: 433px;
+        width: 100%;
         padding-left: 25px;
         padding-left: 20px;
         padding-bottom: 60px;
@@ -238,7 +257,7 @@ a {
         align-items: flex-end;
         background: linear-gradient(to top, #000000 , #00000000);
         z-index: 4;
-        top: 60%;
+        top: 50%;
     }
         .titulo {
             font-size: 19px;
@@ -286,6 +305,11 @@ a {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
+        }
+
+        .cartas img {
+            height: 300px;
+
         }
 
     }

@@ -1,54 +1,40 @@
-let currentSlide = 0;
-let autoSlideInterval;
+let slideIndex = 0;
 
-function showSlide(index) {
-    const slides = document.querySelectorAll('.slide');
-    const totalSlides = slides.length;
+function showSlides(n) {
+    let slides = document.querySelectorAll('.slide');
+    let totalSlides = slides.length;
 
-    if (index >= totalSlides) {
-        currentSlide = 0;
-    } else if (index < 0) {
-        currentSlide = totalSlides - 1;
+    // Verifica si el ancho de la pantalla es 768px o menor
+    let isSmallScreen = window.matchMedia('(max-width: 768px)').matches;
+
+    // Ajusta maxIndex según el tamaño de la pantalla
+    let maxIndex = isSmallScreen ? totalSlides - 1 : totalSlides - 3;
+
+    if (n > maxIndex) {
+        slideIndex = 0;
+    } else if (n < 0) {
+        slideIndex = maxIndex;
     } else {
-        currentSlide = index;
+        slideIndex = n;
     }
 
-    const slideWidth = slides[currentSlide].clientWidth;
-    const slidesContainer = document.querySelector('.slides');
-
-    slidesContainer.style.transform = `translateX(-${currentSlide * slideWidth}px)`;
+    // Cambia el cálculo del offset según el tamaño de la pantalla
+    let offset = isSmallScreen ? -(slideIndex * 100) : -(slideIndex * 33.33);
+    document.querySelector('.slides').style.transform = `translateX(${offset}%)`;
 }
 
 function plusSlides(n) {
-    showSlide(currentSlide + n);
+    showSlides(slideIndex + n);
 }
 
-function startAutoSlide() {
-    autoSlideInterval = setInterval(() => {
-        plusSlides(1);
-    }, 12000); // 12 segundos
-}
-
-function stopAutoSlide() {
-    clearInterval(autoSlideInterval);
-}
-
-// Inicializar slider
-showSlide(currentSlide);
-startAutoSlide();
-
-// Manejo de eventos para botones de navegación
-document.querySelector('.prev').addEventListener('click', () => {
-    plusSlides(-1);
-    stopAutoSlide();
-    startAutoSlide();
-});
-
-document.querySelector('.next').addEventListener('click', () => {
+// Función para mover automáticamente las slides
+function autoSlide() {
     plusSlides(1);
-    stopAutoSlide();
-    startAutoSlide();
-});
+}
 
-// Hacer el slider responsive
-window.addEventListener('resize', () => showSlide(currentSlide));
+// Configuración inicial
+document.addEventListener('DOMContentLoaded', function () {
+    showSlides(slideIndex);
+    // Configura el temporizador para cambiar las slides cada 15 segundos
+    setInterval(autoSlide, 12800);
+});

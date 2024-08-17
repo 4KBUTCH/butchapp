@@ -59,7 +59,7 @@
             <li><a href="index.php?tipo=anime" class="bread">ANIMES</a></li>
             <div class="buscador">
                 <form action="index.php" method="GET">
-                    <input type="text" name="q" placeholder="Buscar..." value="<?php echo isset($_GET['q']) ? htmlspecialchars($_GET['q']) : ''; ?>">
+                    <input autocomplete="off" type="text" name="q" placeholder="Buscar..." value="<?php echo isset($_GET['q']) ? htmlspecialchars($_GET['q']) : ''; ?>">
                     <button type="submit"><i class="fas fa-search"></i></button>
                 </form>
             </ul>
