@@ -191,8 +191,8 @@ a {
     }
 
     .poster {
-        width: 30%;
-        height: auto;
+        width: 150px;
+        height: 225px;
         border-radius: 10px;
     }
 
@@ -212,5 +212,9 @@ a {
         text-align: center;
         margin-top: 50px;
         font-size: 12px;
+    }
+
+    .desc {
+        font-size: 11px;
     }
 }
