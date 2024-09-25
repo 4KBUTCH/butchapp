@@ -187,10 +187,8 @@ a {
 }
 
 .h2_title {
-    width: 441px;
-
-    padding-left: 25px;
-    padding-left: 20px;
+    width: 100%;
+    padding-left: 8px;
     padding-bottom: 50px;
     padding-top: 30px;
     position: absolute;
@@ -199,8 +197,9 @@ a {
     background: linear-gradient(to top, #000000 , #ffffff00);
     z-index: 4;
     top: 60%;
-
 }
+
+
 
 
 .cartas {
@@ -220,6 +219,29 @@ a {
     opacity: .5;
     transform: scale(1.035);
 }
+
+.slide h2 {
+    font-size: 18px;
+}
+
+::-webkit-scrollbar {
+    width: 6px; /* Width of the scrollbar */
+}
+
+body::-webkit-scrollbar-track {
+    background: transparent; /* Background of the scrollbar track */
+    background: #000000; /* Color of the scrollbar thumb on hover */
+
+    
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(rgb(247, 0, 185),#00ffea); /* Color of the scrollbar thumb */
+    border-radius: 6px; /* Rounded corners for the thumb */
+    transition: .5s;
+    
+}
+
 
 @media (max-width: 768px) {
     .prev, .next {
